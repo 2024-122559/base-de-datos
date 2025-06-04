@@ -1,9 +1,9 @@
 <?php 
    // definir las variables
-   $servidor = "localhost";
-   $usuario = "root";
-   $password = ""; // usuario root no tiene contraseña
-   $basededatos = "fs2025_ciudadanos";
+   $servidor = "fdb1028.awardspace.net";
+   $usuario = "4599075_ciudadanos";
+   $password = "emmanuelvalen10"; // usuario root no tiene contraseña
+   $basededatos = "4599075_ciudadanos";
 
    // conexión con mysqli
    $conexion = mysqli_connect($servidor, $usuario, $password, $basededatos);
