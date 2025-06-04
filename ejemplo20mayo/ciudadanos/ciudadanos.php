@@ -122,7 +122,7 @@
     </div>
   </div>
 
-  <div class="container-fluid mt-4">
+  <div class="container-fluid mt-3">
     <div class="table-responsive">
       <table class="table table-bordered table-danger text-center align-middle fs-6 w-100">
         <thead class="table-dark">
