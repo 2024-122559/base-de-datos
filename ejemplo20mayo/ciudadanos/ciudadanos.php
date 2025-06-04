@@ -116,13 +116,12 @@
               Cerrar
             </button>
           </div>
-          
         </div>
+        
       </div>
     </div>
-  </div>
-
-  <div class="container-fluid mt-3">
+    
+  <div class="container-fluid mt-4">
     <div class="table-responsive">
       <table class="table table-bordered table-danger text-center align-middle fs-6 w-100">
         <thead class="table-dark">
@@ -200,6 +199,8 @@
       </table>
     </div>
   </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

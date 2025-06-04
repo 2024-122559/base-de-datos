@@ -15,47 +15,38 @@ if (isset($_POST['btn_insertar'])) {
     $cod_muni  = $_POST['txt_muni'];
     $contra    = $_POST['txt_contra'];
 
-    $sql = "INSERT INTO ciudadanos (
-                dpi, apellido, nombre, direccion, tel_casa, tel_movil, email, fechanac, cod_nivel_acad, cod_muni, contra
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO ciudadanos (
+    dpi, apellido, nombre, direccion, tel_casa, tel_movil, email, fechanac, cod_nivel_acad, cod_muni, contra
+) VALUES (
+    '$dpi', '$apellido', '$nombre', '$direccion', '$tel_casa', '$tel_movil', '$email', '$fechanac', $cod_nivel, $cod_muni, '$contra'
+)";
 
-    try {
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param(
-            "issssssssis", 
-            $dpi, $apellido, $nombre, $direccion, $tel_casa, $tel_movil, $email, $fechanac, $cod_nivel, $cod_muni, $contra
-        );
-        $stmt->execute();
-        $stmt->close();
-
+     try {
+        $ejecutar = mysqli_query($conexion, $sql);
         header('Location: ciudadanos.php');
         exit;
     } catch (Exception $e) {
-        echo "<br>Error al insertar los datos:<br>" . $e->getMessage();
-    }
+        echo "<br>Error al insertar los datos:<br>" . $e->getMessage();        
+    } 
 }
 
 // Eliminar ciudadano
-if (isset($_POST['btn_eliminar'])) {
-    $dpi = intval($_POST['hidden_dpi']);
+if (isset($_POST['btn_eli'])) {
+    $dpi = intval($_POST['hidden_eli']);
 
-    $sql = "DELETE FROM ciudadanos WHERE dpi = ?";
+    $sql = "DELETE FROM ciudadanos WHERE dpi = $dpi";
 
     try {
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $dpi);
-        $stmt->execute();
-        $stmt->close();
-
+        $ejecutar = mysqli_query($conexion, $sql);
         header('Location: ciudadanos.php');
         exit;
     } catch (Exception $e) {
-        echo "<br>Error al eliminar los datos:<br>" . $e->getMessage();
-    }
+        echo "<br>Error al eliminar los datos:<br>" . $e->getMessage();        
+    } 
 }
 
 // Modificar ciudadano
-if (isset($_POST['btn_modificar'])) {
+if (isset($_POST['btn_acta'])) {
     $dpi       = intval($_POST['txt_dpi']);
     $apellido  = $_POST['txt_apelli'];
     $nombre    = $_POST['txt_nombre'];
@@ -68,32 +59,26 @@ if (isset($_POST['btn_modificar'])) {
     $cod_muni  = $_POST['txt_muni'];
     $contra    = $_POST['txt_contra'];
 
-    $sql = "UPDATE ciudadanos SET
-                apellido = ?,
-                nombre = ?,
-                direccion = ?,
-                tel_casa = ?,
-                tel_movil = ?,
-                email = ?,
-                fechanac = ?,
-                cod_nivel_acad = ?,
-                cod_muni = ?,
-                contra = ?
-            WHERE dpi = ?";
+   $sql = "UPDATE ciudadanos SET
+    apellido = '$apellido',
+    nombre = '$nombre',
+    direccion = '$direccion',
+    tel_casa = '$tel_casa',
+    tel_movil = '$tel_movil',
+    email = '$email',
+    fechanac = '$fechanac',
+    cod_nivel_acad = $cod_nivel,
+    cod_muni = $cod_muni,
+    contra = '$contra'
+WHERE dpi = '$dpi'";
 
-    try {
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param(
-            "ssssssssssi",
-            $apellido, $nombre, $direccion, $tel_casa, $tel_movil, $email, $fechanac, $cod_nivel, $cod_muni, $contra, $dpi
-        );
-        $stmt->execute();
-        $stmt->close();
 
+     try {
+        $ejecutar = mysqli_query($conexion, $sql);
         header('Location: ciudadanos.php');
         exit;
     } catch (Exception $e) {
-        echo "<br>Error al modificar los datos:<br>" . $e->getMessage();
-    }
+        echo "<br>Error al insertar los datos:<br>" . $e->getMessage();        
+    } 
 }
 ?>
